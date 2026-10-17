@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a07">
+<title>RAXIS | Bebidas Energizantes</title>
+
+<style>
+:root {
+    --lime: #a8ff00;
+    --black: #050705;
+    --line: #303a29;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    min-height: 70px;
+    padding: 14px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    background: #050605;
+    border-bottom: 1px solid #536b27;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 32px;
+    font-style: italic;
+    font-weight: 1000;
+    letter-spacing: 2px;
+    color: var(--lime);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+nav a {
+    font-size: 14px;
+    transition: .2s;
+}
+
+nav a:hover {
+    color: var(--lime);
+}
+
+button, .btn {
+    border: 0;
+    border-radius: 7px;
+    background: var(--lime);
+    color: #071000;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 13px 20px;
+    display: inline-block;
+    transition: .2s;
+}
+
+button:hover, .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 22px #a8ff0040;
+}
+
+.cart {
+    border: 1px solid var(--lime);
+    background: transparent;
+    color: var(--lime);
+}
+
+.hero {
+    min-height: 410px;
+    display: grid;
+    grid-template-columns: 1fr 1.15fr .65fr;
+    align-items: center;
+    gap: 24px;
+    padding: 35px 7%;
+    overflow: hidden;
+    background: radial-gradient(
+        ellipse at 60% 50%,
+        #24400e 0%,
+        #101a0a 26%,
+        #050705 70%
+    );
+}
+
+.kicker {
+    color: var(--lime);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 4px;
+}
+
+.hero h1 {
+    font-size: clamp(48px, 6vw, 82px);
+    line-height: .95;
+    letter-spacing: -3px;
+    margin: 16px 0 8px;
+    font-style: italic;
+}
+
+.hero h1 span {
+    display: block;
+    color: white;
+}
+
+.hero h2 {
+    font-size: 17px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    color: #e0e4dc;
+    line-height: 1.6;
+    font-size: 14px;
+    max-width: 370px;
+    margin-bottom: 22px;
+}
+
+.hero-cans {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.hero-cans img {
+    width: 36%;
+    max-height: 330px;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 22px #000);
+    transition: .25s;
+}
+
+.hero-cans img:nth-child(2) {
+    width: 42%;
+    z-index: 1;
+}
+
+.hero-cans img:hover {
+    transform: translateY(-8px);
+}
+
+.highlights .point {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.point .ico {
+    border: 1px solid var(--lime);
+    color: var(--lime);
+    border-radius: 50%;
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.point b {
+    display: block;
+    color: var(--lime);
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.point small {
+    color: #e0e0e0;
+    font-size: 12px;
+}
+
+section {
+    scroll-margin-top: 85px;
+}
+
+.products {
+    padding: 30px 7% 36px;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-heading {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.section-heading span {
+    color: var(--lime);
+}
+
+.intro {
+    color: #c6c9c2;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    gap: 14px;
+    align-items: center;
+    border: 1px solid #354032;
+    border-radius: 9px;
+    padding: 14px;
+    background: linear-gradient(125deg, #0c100c, #050705);
+    min-width: 0;
+    transition: .2s;
+}
+
+.product:hover {
+    border-color: var(--lime);
+    transform: translateY(-3px);
+}
+
+.product img {
+    width: 100%;
+    height: 155px;
+    object-fit: contain;
+}
+
+.product h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.product p {
+    font-size: 12px;
+    line-height: 1.5;
+    color: #d0d3cd;
+    min-height: 37px;
+}
+
+.price {
+    display: block;
+    color: var(--lime);
+    font-size: 17px;
+    font-weight: 900;
+    margin: 12px 0;
+}
+
+.product button {
+    font-size: 10px;
+    padding: 10px 8px;
+    width: 100%;
+}
+
+.about {
+    padding: 28px 7%;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr 1.4fr;
+    gap: 28px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+}
+
+.about-art {
+    min-height: 185px;
+    border-radius: 9px;
+    border: 1px solid #344326;
+    background: radial-gradient(circle, #31530b, #071006 70%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-art img {
+    height: 215px;
+    max-width: 100%;
+    object-fit: contain;
+    transform: rotate(-10deg);
+    filter: drop-shadow(0 0 20px #a8ff0040);
+}
+
+.about h2 {
+    font-size: 26px;
+    line-height: 1.1;
+    margin: 10px 0;
+}
+
+.about h2 span,
+.contact h2 span {
+    color: var(--lime);
+}
+
+.about p {
+    font-size: 12px;
+    line-height: 1.65;
+    color: #c9cec4;
+    margin-bottom: 13px;
+}
+
+.values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.value {
+    text-align: center;
+    padding: 10px;
+    border-left: 1px solid #283022;
+}
+
+.value .symbol {
+    font-size: 32px;
+    color: var(--lime);
+    margin-bottom: 10px;
+}
+
+.value h3 {
+    font-size: 10px;
+    color: var(--lime);
+    line-height: 1.5;
+    margin-bottom: 9px;
+}
+
+.value p {
+    font-size: 11px;
+}
+
+.contact {
+    padding: 28px 7%;
+    display: grid;
+    grid-template-columns: .85fr 1.7fr .65fr;
+    gap: 22px;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+}
+
+.contact h2 {
+    font-size: 24px;
+    margin: 9px 0;
+}
+
+.contact p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #c5c9c0;
+}
+
+form {
+    border: 1px solid #354032;
+    border-radius: 9px;
+    padding: 16px;
+    background: #080b08;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+label {
+    font-size: 11px;
+    color: #c6cbc1;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    background: #050705;
+    border: 1px solid #30392d;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font: inherit;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 55px;
+}
+
+form button {
+    font-size: 11px;
+    padding: 10px 16px;
+}
+
+#form-msg {
+    color: var(--lime);
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.brand-card {
+    background: radial-gradient(circle, #29440c, #070a06 70%);
+    border: 1px solid #354032;
+    border-radius: 9px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.brand-card .bolt {
+    font-size: 38px;
+    color: var(--lime);
+}
+
+.brand-card strong {
+    font-size: 22px;
+    color: var(--lime);
+    font-style: italic;
+}
+
+.brand-card small {
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 7px;
+}
+
+footer {
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    color: #bfc3ba;
+    font-size: 11px;
+}
+
+footer .logo {
+    font-size: 23px;
+}
+
+footer a:last-child {
+    color: var(--lime);
+}
+
+.notice {
+    font-size: 10px;
+    color: #777;
+    text-align: center;
+    padding: 0 7% 16px;
+    line-height: 1.5;
+}
+
+@media (max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .highlights {
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product {
+        grid-template-columns: 140px 1fr;
+    }
+
+    .product img {
+        height: 160px;
+    }
+
+    .about {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .values {
+        grid-column: 1 / -1;
+    }
+
+    .contact {
+        grid-template-columns: 1fr 1.5fr;
+    }
+
+    .brand-card {
+        display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    header {
+        padding: 16px 5%;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 27px;
+    }
+
+    nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .cart {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 45px 6%;
+        text-align: center;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-cans {
+        max-width: 390px;
+        margin: auto;
+    }
+
+    .hero-cans img {
+        max-height: 235px;
+    }
+
+    .products, .about, .contact {
+        padding: 28px 6%;
+    }
+
+    .section-heading {
+        font-size: 25px;
+    }
+
+    .product {
+        grid-template-columns: 115px 1fr;
+        padding: 10px;
+    }
+
+    .product img {
+        height: 145px;
+    }
+
+    .about {
+        grid-template-columns: 1fr;
+    }
+
+    .about-art {
+        min-height: 160px;
+    }
+
+    .values {
+        grid-column: auto;
+    }
+
+    .contact {
+        grid-template-columns: 1fr;
+    }
+
+    .brand-card {
+        display: flex;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    footer {
+        padding: 20px 6%;
+        flex-wrap: wrap;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="#inicio">RAXIS</a>
+
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <button class="cart" onclick="verCarrito()">
+        🛒 Carrito (<span id="cantidad">0</span>)
+    </button>
+</header>
+
+<main>
+
+<!-- INICIO -->
+<section class="hero" id="inicio">
+    <div>
+        <div class="kicker">ENERGÍA SIN LÍMITES</div>
+        <h1>RAXIS<span>BEBIDAS</span></h1>
+        <h2>ENERGIZANTES</h2>
+
+        <p>
+            Más que una bebida, es un impulso.
+            RAXIS presenta una colección de sabores
+            con una imagen moderna y audaz.
+        </p>
+
+        <a class="btn" href="#productos">
+            EXPLORAR PRODUCTOS →
+        </a>
+    </div>
+
+    <div class="hero-cans">
+        <img src="imagenes/raxis-tropical.png"
+             alt="Lata RAXIS Tropical">
+
+        <img src="imagenes/raxis-original.png"
+             alt="Lata RAXIS Original">
+
+        <img src="imagenes/raxis-zero.png"
+             alt="Lata RAXIS Zero">
+    </div>
+
+    <div class="highlights">
+        <div class="point">
+            <span class="ico">ϟ</span>
+            <div>
+                <b>DISEÑO EXCLUSIVO</b>
+                <small>Una marca con actitud</small>
+            </div>
+        </div>
+
+        <div class="point">
+            <span class="ico">✳</span>
+            <div>
+                <b>VARIEDAD DE SABORES</b>
+                <small>Descubre tu favorito</small>
+            </div>
+        </div>
+
+        <div class="point">
+            <span class="ico">◇</span>
+            <div>
+                <b>ESTILO RAXIS</b>
+                <small>Destaca a tu manera</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTOS -->
+<section class="products" id="productos">
+    <h2 class="section-heading">
+        NUESTROS <span>PRODUCTOS</span>
+    </h2>
+
+    <p class="intro">
+        Elige tu sabor favorito y conoce la colección RAXIS.
+        <br>Precios de demostración en pesos colombianos.
+    </p>
+
+    <div class="grid">
+
+        <article class="product">
+            <img src="imagenes/raxis-original.png"
+                 alt="Lata RAXIS Original">
+
+            <div>
+                <h3>RAXIS ORIGINAL</h3>
+                <p>Presentación negra y verde neón de estilo clásico.</p>
+                <span class="price">$5.000 COP</span>
+
+                <button onclick="agregar('RAXIS ORIGINAL', 5000)">
+                    🛒 AGREGAR AL CARRITO
+                </button>
+            </div>
+        </article>
+
+        <article class="product">
+            <img src="imagenes/raxis-tropical.png"
+                 alt="Lata RAXIS Tropical">
+
+            <div>
+                <h3>RAXIS TROPICAL</h3>
+                <p>Diseño rojo con personalidad y estilo frutal.</p>
+                <span class="price">$5.500 COP</span>
+
+                <button onclick="agregar('RAXIS TROPICAL', 5500)">
+                    🛒 AGREGAR AL CARRITO
+                </button>
+            </div>
+        </article>
+
+        <article class="product">
+            <img src="imagenes/raxis-zero.png"
+                 alt="Lata RAXIS Zero">
+
+            <div>
+                <h3>RAXIS ZERO</h3>
+                <p>Una propuesta azul para completar la colección.</p>
+                <span class="price">$6.000 COP</span>
+
+                <button onclick="agregar('RAXIS ZERO', 6000)">
+                    🛒 AGREGAR AL CARRITO
+                </button>
+            </div>
+        </article>
+
+    </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="about" id="nosotros">
+
+    <div class="about-art">
+        <img src="imagenes/raxis-original.png"
+             alt="Lata de diseño RAXIS">
+    </div>
+
+    <div>
+        <div class="kicker">SOMOS RAXIS</div>
+
+        <h2>UNA MARCA CON <span>ACTITUD</span></h2>
+
+        <p>
+            RAXIS es una propuesta de tienda de bebidas
+            con una identidad visual moderna, diseños
+            llamativos y una experiencia de compra sencilla.
+        </p>
+
+        <p>
+            Conoce la colección y explora las diferentes
+            presentaciones de nuestra marca.
+        </p>
+
+        <a class="btn" href="#contacto">CONÓCENOS →</a>
+    </div>
+
+    <div class="values">
+        <div class="value">
+            <div class="symbol">ϟ</div>
+            <h3>SABORES<br>POR DESCUBRIR</h3>
+            <p>Explora nuestra colección.</p>
+        </div>
+
+        <div class="value">
+            <div class="symbol">♧</div>
+            <h3>INFORMACIÓN<br>CLARA</h3>
+            <p>Consulta los detalles de cada producto.</p>
+        </div>
+
+        <div class="value">
+            <div class="symbol">☆</div>
+            <h3>DISEÑO<br>EXCLUSIVO</h3>
+            <p>Una imagen que destaca.</p>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+
+    <div>
+        <div class="kicker">CONTÁCTANOS</div>
+        <h2>ESTAMOS AQUÍ<br><span>PARA TI</span></h2>
+        <p>
+            ¿Tienes alguna pregunta o sugerencia?
+            Escríbenos usando el formulario.
+        </p>
+    </div>
+
+    <form id="formulario">
+        <div class="form-row">
+            <div>
+                <label for="nombre">Tu nombre</label>
+                <input id="nombre" required
+                       placeholder="Escribe tu nombre">
+            </div>
+
+            <div>
+                <label for="correo">Correo electrónico</label>
+                <input id="correo" type="email" required
+                       placeholder="tucorreo@ejemplo.com">
+            </div>
+        </div>
+
+        <label for="texto">Mensaje</label>
+        <textarea id="texto" required
+                  placeholder="¿En qué podemos ayudarte?"></textarea>
+
+        <button type="submit">➤ ENVIAR MENSAJE</button>
+        <p id="form-msg" role="status"></p>
+    </form>
+
+    <div class="brand-card">
+        <div class="bolt">ϟ</div>
+        <strong>RAXIS</strong>
+        <small>TU ENERGÍA, TU ESTILO</small>
+    </div>
+
+</section>
+</main>
+
+<footer>
+    <a class="logo" href="#inicio">RAXIS</a>
+    <span>© 2026 RAXIS. Proyecto demostrativo.</span>
+    <a href="#inicio">Volver al inicio ↑</a>
+</footer>
+
+<p class="notice">
+    Diseño conceptual. Productos y precios ilustrativos.
+    Las bebidas energizantes con cafeína no se recomiendan
+    para niños ni adolescentes. Consulta siempre las etiquetas
+    y advertencias del fabricante.
+</p>
+
+<script>
+let carrito = [];
+
+function agregar(nombre, precio) {
+    carrito.push({ nombre, precio });
+
+    document.getElementById("cantidad").textContent =
+        carrito.length;
+
+    alert(nombre + " se agregó al carrito.");
+}
+
+function verCarrito() {
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío. Explora nuestros productos.");
+        return;
+    }
+
+    let total = 0;
+    let texto = "TU CARRITO RAXIS\n\n";
+
+    carrito.forEach((producto, indice) => {
+        texto += (indice + 1) + ". " +
+            producto.nombre + " — $" +
+            producto.precio.toLocaleString("es-CO") + " COP\n";
+
+        total += producto.precio;
+    });
+
+    texto += "\nTOTAL: $" +
+        total.toLocaleString("es-CO") +
+        " COP\n\nPedido de demostración.";
+
+    alert(texto);
+}
+
+document.getElementById("formulario")
+    .addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const nombre = document.getElementById("nombre").value.trim();
+
+        document.getElementById("form-msg").textContent =
+            "¡Gracias, " + nombre +
+            "! El formulario funciona como demostración; " +
+            "aún no envía correos.";
+
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
